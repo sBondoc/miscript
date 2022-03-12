@@ -1,3 +1,11 @@
+"""
+leet.py
+----------------------------------------------------------------
+Send solution code to local desktop from remote Linux workspace
+for copy/paste to LeetCode via local browser.
+
+"""
+
 import subprocess
 from pathlib import Path
 
