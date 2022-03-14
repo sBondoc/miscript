@@ -31,15 +31,19 @@ def transfer(remote: str, sol: int, lang: str):
 		/ Path(DIR_LOCAL)
 		/ path_filename
 	)
+	usr = remote.split('@')[0]
 	path_src =  (
 		Path('{0}:'.format(remote))
-		/ Path(HOME[remote.split('@')[0]])
+		/ Path(HOME[usr])
 		/ Path(DIR_REMOTE)
 		/ Path('{n:05d}'.format(n = sol))
 		/ Path(LANGUAGES[lang])
 		/ path_filename
 	)
-	subprocess.run(['scp', str(path_src), str(path_dst)], shell = True)
+	opt = ""
+	if (usr == "pi"):
+		opt = "-P {0}".format(int(input("Port: ")))
+	subprocess.run(['scp', opt, str(path_src), str(path_dst)], shell = True)
 
 def main():
 	remote = str(input("Remote: "))
